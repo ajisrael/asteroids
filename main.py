@@ -1,6 +1,8 @@
 # this allows us to use code from
 # the open-source pygame library
 # throughout this file
+from asteroid import Asteroid
+from asteroidfield import AsteroidField
 import pygame
 
 from player import Player
@@ -15,10 +17,14 @@ def main():
 
     updateable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
 
     Player.containers = (updateable, drawable)
+    Asteroid.containers = (updateable, drawable, asteroids)
+    AsteroidField.containers = (updateable)
 
-    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    AsteroidField()
 
     while True:
         for event in pygame.event.get():

@@ -2,11 +2,18 @@
 # the open-source pygame library
 # throughout this file
 import pygame
+
+from player import Player
 from constants import *
 
 def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+
+    clock = pygame.time.Clock()
+    dt = 0
+
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
     while True:
         for event in pygame.event.get():
@@ -14,7 +21,11 @@ def main():
                 return
 
         screen.fill("black")
+        player.draw(screen)
+
         pygame.display.flip()
+        time_passed = clock.tick(60)
+        dt = time_passed / 1000
 
 
 # This line ensures the main() function is only called when this file is run directly;
